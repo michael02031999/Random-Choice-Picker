@@ -53,10 +53,16 @@ function letters(e) {
   if (nothing == true) {
     div = document.createElement("div");
     responses.appendChild(div);
+
     nothing = false;
   }
+  console.log(comma);
+  console.log(div.innerHTML);
+  console.log(arrayOfCommas);
 
-  div.innerHTML = textarea.value.substring(comma).replace(/,/g, "");
+  responses.lastElementChild.innerHTML = textarea.value
+    .substring(arrayOfCommas[arrayOfCommas.length - 1])
+    .replace(/,/g, "");
   //div.innerHTML = textarea.value;
 
   if (e.data != " ") {
@@ -112,6 +118,7 @@ function backspace(e) {
 
       count--;
       comma = 0;
+      arrayOfCommas.pop();
       responses.lastElementChild.remove();
     }
   }
@@ -180,6 +187,7 @@ function enter(e) {
       //numberOfDivs.style.backgroundColor = "rgb(240, 147, 43)";
       enterPressed = true;
       textarea.value = "";
+      arrayOfCommas = [0];
       e.preventDefault();
     }
   }
